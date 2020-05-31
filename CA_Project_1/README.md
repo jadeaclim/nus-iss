@@ -13,4 +13,4 @@ Our Microservices included:
 
 My Scope of Work: APIGateway - Login 
 
-![Virtual Shopping Cart Login Page](demo/CA_Project_Login.gif)
+![Virtual Shopping Cart Login Page](demo/CA_Project_1_Login.gif)
