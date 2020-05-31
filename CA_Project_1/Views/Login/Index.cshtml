@@ -1,0 +1,69 @@
+﻿
+@model APIGateway.Models.User
+
+@{
+
+    ViewData["Title"] = "Login";
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customer Login</title>
+    <link rel="stylesheet" href="~/css/Login.css" />
+</head>
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <!-- Brand/logo -->
+    <a class="navbar-brand" href="#">Welcome</a>
+
+    <!-- Links -->
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="../Gallery">Gallery</a>
+        </li>
+
+    </ul>
+</nav>
+
+<body>    
+
+<div class="loginbox">
+    <img src="~/assets/avatar.png" class="avatar">
+    <h1>Customer Login</h1>
+
+    <form id="loginForm" action="Home/" method="POST">
+
+        <p>Username</p>
+        <input id="uname" name="username" type="text" placeholder="Enter Username" value="" />
+
+        <p>Password</p>
+        <input id="pwd" name="password" type="password" placeholder="Enter Password" value="" />
+
+        <button id="loginBtn" type="submit" class="btn btn-success" style="width:100%">LOGIN</button>
+
+        <div id="errmsg" style="color:red"></div>
+
+        <input id="hashPwd" name="hashPasswd" type="hidden" />
+
+    </form>
+</div>
+</body>
+
+</html>
+
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/lib/crypto/core-min.js"></script>
+<script src="~/lib/crypto/sha256.js"></script>
+<script src="~/js/Login.js"></script>
+<link rel="stylesheet" href="~/css/Gallery.css" />
+
+
+
+
