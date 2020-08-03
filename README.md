@@ -1,5 +1,5 @@
 # nus-iss
-Projects undertaken at NUS-ISS
+Projects undertaken at NUS-ISS as student of Graduate Diploma in Systems Analysis (GDipSA), 50th Batch
 
 CA_Project_1 (Term 1) co-authored with 3 other members of SA50 Team 1b
 - Internet Project using ASP.NET and Web Services
