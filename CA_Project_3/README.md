@@ -6,7 +6,7 @@ CA_Project_3 (Term 2) co-authored with members of SA50 Team 1
 - Programming Language: Java
 - Development Environment: Spring Tool Suite/Eclipse
 
-- Project Overview:
+Project Overview:
 
 ![Leave Application_Processing_System_Use_Case_Model](demo/CA_Project_3_Use_Case_Model.jpg)
 
