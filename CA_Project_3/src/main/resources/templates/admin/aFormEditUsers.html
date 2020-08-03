@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link href="assets/css/signin.css" th:href="@{/assets/css/sidebar.css}" rel="stylesheet">
+<title>Edit Users Form</title>
+<script>
+	function populateAdminleave() {
+		document.getElementById("altextbox").value = Number(14);
+		document.getElementById("mltextbox").value = Number(60);
+	}
+	function populateProfleave() {
+		document.getElementById("altextbox").value = Number(18);
+		document.getElementById("mltextbox").value = Number(60);
+	}
+</script>
+</head>
+<body>
+<div class="wrapper">
+    <div class="sidebar">
+        <h2>Admin</h2>
+        <ul>
+            <li><a href="/">Admin Home</a></li>
+            <li><a href="/admin/list">Manage Staff</a></li>
+            <li><a href="/employee">Manage Personal Leave</a></li>
+            <li><a href="/admin/create">Create new staff</a></li>
+            <li><a href="/admin/massEditLeave">Manage Medical/Annual Leave</a></li>
+            <li><a href="/admin/ph">Manage Public Holiday</a></li>
+            <li><a href="/logout">Log Out</a></li>
+        </ul> 
+       
+    </div>
+    <div class="main_content">
+        <div class="header"><th:block th:include = "common :: navbar"></div>  
+        <div class="container">
+		<h1>Edit Users</h1>
+ <form class="form-horizontal" action="#" th:object="${edituserform}" th:action="@{/admin/save_edit}" method="post">
+
+		
+		<fieldset>
+				<div class="form-group">
+					<label class="control-label col-sm-2"><b>Employee Id:</b></label>
+					<div class="col-sm-6">
+						<input class="form-control" type="text" th:field="*{uid}"
+							readonly>
+					</div>
+				</div>
+		</fieldset>
+		&nbsp;
+		<fieldset>
+				<div class="form-group">
+					<label class="control-label col-sm-2"><b>Email:</b></label>
+					<div class="col-sm-6">
+						<input class="form-control" type="text" th:field="*{email}"
+							readonly>
+					</div>
+				</div>
+		</fieldset>
+		&nbsp;
+		<fieldset>
+				<div class="form-group">
+					<label class="control-label col-sm-2"><b>Name:</b></label>
+					<div class="col-sm-6">
+						<input class="form-control" type="text" th:field="*{name}"
+							required="required">
+					</div>
+				</div>
+		</fieldset>
+		&nbsp;
+		<fieldset>
+				<div class="form-group">
+					<label class="control-label col-sm-2"> <b>Account Status:</b>
+						<div>
+							<input type="radio" th:field="*{enabled}" name="accountstatus"
+								value="true" checked> <label for="true">Enabled</label>
+						</div>
+						<div>
+							<input type="radio" th:field="*{enabled}" name="accountstatus"
+								value="false"> <label for="false">Disabled</label>
+						</div>
+					</label>
+				</div>
+		</fieldset>
+		&nbsp;
+
+		
+		
+		<fieldset>
+				<div class="form-group">
+					<label class="control-label col-sm-2"> <b>Employee Role</b>
+						<div>
+							<input type="radio" th:field="*{userType}"
+								id="#{CommConstants.UserType.EMPLOYEE}" name="emptype"
+								value="EMPLOYEE" checked onclick="populateProfleave()" required>
+							<label for="EMPLOYEE">Employee</label>
+						</div>
+						<div>
+							<input type="radio" th:field="*{userType}"
+								id="#{CommConstants.UserType.AMDIN}" name="emptype"
+								value="ADMIN" onclick="populateAdminleave()"> <label
+								for="ADMIN">Administrator</label>
+						</div>
+						<div>
+							<input type="radio" th:field="*{userType}"
+								id="{CommConstants.UserType.MANAGER}" name="emptype"
+								value="MANAGER" onclick="populateProfleave()"> <label
+								for="MANAGER">Manager</label>
+						</div>
+					</label>
+				</div>
+		</fieldset>	
+		&nbsp;
+		
+
+		<fieldset>
+				<div class="form-group">
+					<label class="control-label col-sm-6"><b>Annual leave entitled per year:</b> </label>
+					<div class="col-sm-6">
+						<input class="form-control" type="number"
+							th:field="*{annualLeaveEntitlement}" id="altextbox">
+					</div>
+				</div>
+		</fieldset>
+		&nbsp;
+		<fieldset>
+				<div class="form-group">
+					<label class="control-label col-sm-6"><b>Medical leave entitled per year: </b></label>
+					<div class="col-sm-6">
+						<input class="form-control" type="number" max="60"
+							th:field="*{medicalLeaveEntitlement}" id="mltextbox">
+					</div>
+				</div>
+		</fieldset>
+		&nbsp;
+		<fieldset>
+			<div class="form-group">
+				<label class="control-label col-sm-6"><button class="btn btn-primary" type="submit"> Save </button></label>
+				</div>
+		</fieldset>
+		
+
+		
+	</form>
+    </div>
+    
+</div>
+
+</body>
+</html>

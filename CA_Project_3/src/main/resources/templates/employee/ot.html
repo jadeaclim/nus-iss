@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Submission of Overtime </title>
+    <link href="assets/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.css}"
+          rel="stylesheet">
+    <!-- jquery core js -->
+    <!-- if you want to use datetime picker need to import  -->
+    <script th:src="@{/assets/js/jquery.min.js}"></script>
+    <script th:src="@{/assets/js/moment-with-locales.min.js}"></script>
+    <script th:src="@{/assets/js/transition.js}"></script>
+    <script th:src="@{/assets/js/collapse.js}"></script>
+    <script th:src="@{/assets/js/bootstrap-datetimepicker.min.js}"></script>
+    <link th:href="@{/assets/css/bootstrap-datetimepicker.min.css}"
+          rel="stylesheet">
+    <script th:src="@{/assets/js/bootstrap.min.js}"></script>
+    <link th:href="@{/assets/css/bootstrap.css}" rel="stylesheet">
+    
+<link href="assets/css/signin.css" th:href="@{/assets/css/sidebar.css}" rel="stylesheet">
+</head>
+<body>
+<div class="wrapper">
+    <div class="sidebar" style="font-size:16px;">
+        <h2>Employee</h2>
+        <ul>
+            <li sec:authorize="hasAuthority('ADMIN')" ><a href="/">Admin Home</a></li>
+            <li sec:authorize="hasAuthority('MANAGER')" ><a href="/">Manager Home</a></li>
+            <li><a href="/employee">Employee Home</a></li>
+            <li><a href="/employee/apply">Submit Leave Application</a></li>
+            <li><a href="/employee/las">View Leave History</a></li>
+            <li><a href="/employee/ots">Manage Overtime</a></li>
+            <li><a href="/logout">Log Out</a></li>
+        </ul> 
+       
+    </div>
+    <div class="main_content">
+    <div class="header">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			 
+			  <a class="navbar-brand" >
+				  <img src="/laps/src/main/resources/static/assets/img/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="" >
+				  ISS Leave Application Portal
+			  </a>
+			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			    <span class="navbar-toggler-icon"></span>
+			  </button>
+			  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			    <div class="navbar-nav">
+		
+					
+			    </div>
+			  </div>
+			  	<span class="navbar-text">
+	     			Logged user: <span sec:authentication="name"></span>
+				</span>
+		</nav>
+	</div>
+<h2 style="text-align:center">Submission of Overtime</h2>
+&nbsp;
+<main class="row">
+    <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+    <form th:action="@{/employee/ot}" method="post" id="form" onsubmit="return check()"
+          class="col-md-6 offset-md-3" >
+        <input type="hidden" name="startTime"/>
+        <input type="hidden" name="endTime"/>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Start Time</label>
+            <div class="row col-sm-10">
+                <div class='col-sm-5 input-group date'>
+                    <input type='text' class="form-control"  id='starttime' /> <span
+                        class="input-group-addon"> <span
+                        class="glyphicon glyphicon-calendar"></span>
+						</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">End Time</label>
+            <div class="row col-sm-10">
+                <div class='col-sm-5 input-group date'>
+                    <input type='text' class="form-control"  id='endtime' /> <span
+                        class="input-group-addon"> <span
+                        class="glyphicon glyphicon-calendar"></span>
+						</span>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg btn-block"
+                th:text="submit" id="submit">Submit</button>
+    </form>
+</main>
+
+<script type="text/javascript" th:src="@{/assets/js/submitOT.js}">
+
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link href="assets/css/signin.css" th:href="@{/assets/css/sidebar.css}" rel="stylesheet">
+<meta charset="ISO-8859-1">
+<title>Employee Leave History</title>
+	<!-- Bootstrap core CSS -->
+	<link href="asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.css}" rel="stylesheet">
+	<!-- jquery core js -->
+	<script th:src="@{/webjars/jquery/3.5.1/jquery.js}"></script>
+	<!-- Bootstrap core js -->
+	<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="wrapper">
+    <div class="sidebar">
+        <h2>Manager</h2>
+        <ul>
+            <li><a href="/">Manager Home</a></li>
+        	<li><a href="/employee">Manage Personal Leave</a></li>
+            <li><a href="/manager/employeelist">Employee List</a></li>
+            <li><a href="/manager/employeeonleave">Employees on Leave</a>
+            <li><a href="/manager/listforapproval">Leave Applications for Approval</a></li>
+            <li><a href="/manager/compensationclaims">Overtime Claims</a></li>           
+          	<li><a href="/logout">Log Out</a></li>
+        </ul>  
+    </div>
+    <div class="main_content">
+        <div class="header"><th:block th:include = "common :: navbar"></div>
+        <div class="container" th:if="${#lists.isEmpty(lalist)}">
+        	<h2>This employee currently has no leave history.</h2>
+        	<div><a href="/manager/employeelist"><button class="btn btn-primary">Back to Employee List</button></a></div>
+        </div>
+        <div class="container" th:if="${not #lists.isEmpty(lalist)}">
+			<h2><span th:text="${lalist[0].owner.name}"></span>'s Leave History</h2>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th scope="col">Start Date</th>
+						<th scope="col">End Date</th>
+						<th scope="col">Leave Type</th>
+						<th scope="col">Reason</th>
+						<th scope="col">Status</th>
+					</tr>
+				</thead>		
+				<tbody>
+				<tr>
+					<tr th:each="la:${lalist}">					  
+						<td th:utext="${#dates.format(la.fromTime, 'yyyy-MM-dd HH:mm')}"></td>
+						<td th:utext="${#dates.format(la.toTime, 'yyyy-MM-dd HH:mm')}"></td>
+						<td th:text="${la.type}"></td>
+						<td th:text="${la.reasons}"></td>
+						<td th:text="${la.status}"></td>
+					</tr>
+				</tbody>
+			</table>
+			<div><a th:href="@{/manager/exporteleavehistory/}+${lalist[0].owner.uid}"><button class="btn btn-primary">Export as CSV</button></a></div>
+			<br>
+			<div><a href="/manager/employeelist"><button class="btn btn-primary">Back to Employee List</button></a></div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

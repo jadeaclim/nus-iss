@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link href="assets/css/signin.css" th:href="@{/assets/css/sidebar.css}" rel="stylesheet">
+<title>Edit Leave Form</title>
+</head>
+<body>
+<div class="wrapper">
+    <div class="sidebar">
+        <h2>Admin</h2>
+        <ul>
+            <li><a href="/">Admin Home</a></li>
+            <li><a href="/admin/list">Manage Staff</a></li>
+            <li><a href="/employee">Manage Personal Leave</a></li>
+            <li><a href="/admin/create">Create new staff</a></li>
+            <li><a href="/admin/massEditLeave">Manage Medical/Annual Leave</a></li>
+            <li><a href="/admin/ph">Manage Public Holiday</a></li>
+            <li><a href="/logout">Log Out</a></li>
+        </ul> 
+       
+    </div>
+    <div class="main_content">
+        <div class="header"><th:block th:include = "common :: navbar"></div>  
+        <div class="container">
+<h1>Manage leave Entitlement</h1>
+&nbsp;
+	
+	<form action="#" th:object="${mldays}" th:action="@{/admin/massSaveLeave}" method="post" >
+	    <div class="form-group">
+		<fieldset>
+		<label for="inputsm"> Medical Leave: </label>
+		<input class="form-control" type="text" th:field="*{medicalLeaveEntitlement}">
+		</fieldset>
+		&nbsp;		
+		
+		<fieldset>
+			<label for="inputsm">Annual leave for Administrative Staff: </label>
+			<input class="form-control" type="text" th:field="*{annualLeaveEntitlementAdmin}">
+		</fieldset>
+		&nbsp;
+		
+		<fieldset>
+			<label for="inputsm"> Annual Leave for Professional Employees: </label>
+			 <input class="form-control" th:field="*{annualLeaveEntitlementProf}">
+		</fieldset>
+		&nbsp;
+
+		<fieldset>
+		<span class="help-block"><small>Note: This will reset medical and annual leave for all employees to the indicated numbers above. </small></span>
+		 </fieldset>
+		 </div>
+		
+		<fieldset>
+			<button class="btn btn-primary" type="submit" >Save</button>
+			&nbsp;	
+			<button class="btn btn-primary" type="reset">Reset</button>
+		</fieldset>
+	</form>
+
+
+</div>
+</div>
+    
+</div>
+
+</body>
+</html>

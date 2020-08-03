@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link href="assets/css/signin.css" th:href="@{/assets/css/sidebar.css}" rel="stylesheet">
+
+<script>
+	function populateAdminleave() {
+		document.getElementById("altextbox").value = Number(14);
+		document.getElementById("mltextbox").value = Number(60);
+	}
+	function populateProfleave() {
+		document.getElementById("altextbox").value = Number(18);
+		document.getElementById("mltextbox").value = Number(60);
+	}
+</script>
+
+<meta charset="ISO-8859-1">
+<title>Add User Page</title>
+</head>
+<body>
+<div class="wrapper">
+    <div class="sidebar">
+        <h2>Admin</h2>
+        <ul>
+            <li><a href="/">Admin Home</a></li>
+            <li><a href="/admin/list">Manage Staff</a></li>
+            <li><a href="/employee">Manage Personal Leave</a></li>
+            <li><a href="/admin/create">Create new staff</a></li>
+            <li><a href="/admin/massEditLeave">Manage Medical/Annual Leave</a></li>
+            <li><a href="/admin/ph">Manage Public Holiday</a></li>
+            <li><a href="/logout">Log Out</a></li>
+        </ul> 
+       
+    </div>
+    <div class="main_content">
+        <div class="header"><th:block th:include = "common :: navbar"></div>  
+        <div class="container">
+		<h1>Create new User</h1>
+		&nbsp;
+		<form class="form-horizontal" action="#" th:object="${usertohtml}"
+			th:action="@{/admin/save}" method="post">
+			<fieldset>
+				<input type="hidden" th:field="*{uid}">
+			</fieldset>
+			<fieldset>
+				<div class="form-group">
+					<label class="control-label col-sm-2"> <b>Account
+							Status:</b>
+						<div>
+							<input type="radio" th:field="*{enabled}" name="accountstatus"
+								value="true" checked> <label for="true">Enabled</label>
+						</div>
+						<div>
+							<input type="radio" th:field="*{enabled}" name="accountstatus"
+								value="false"> <label for="false">Disabled</label>
+						</div>
+					</label>
+				</div>
+			</fieldset>
+
+			<fieldset>
+				<div class="form-group">
+					<label class="control-label col-sm-2"> <b>Select a user
+							Type:</b>
+						<div>
+							<input type="radio" th:field="*{userType}"
+								id="#{CommConstants.UserType.EMPLOYEE}" name="emptype"
+								value="EMPLOYEE" checked onclick="populateProfleave()" required>
+							<label for="EMPLOYEE">Employee</label>
+						</div>
+						<div>
+							<input type="radio" th:field="*{userType}"
+								id="#{CommConstants.UserType.AMDIN}" name="emptype"
+								value="ADMIN" onclick="populateAdminleave()"> <label
+								for="ADMIN">Administrator</label>
+						</div>
+						<div>
+							<input type="radio" th:field="*{userType}"
+								id="{CommConstants.UserType.MANAGER}" name="emptype"
+								value="MANAGER" onclick="populateProfleave()"> <label
+								for="MANAGER">Manager</label>
+						</div>
+					</label>
+				</div>
+			</fieldset>
+
+			<fieldset>
+				<div class="form-group">
+					<label class="control-label col-sm-2"><b>Name:</b></label>
+					<div class="col-sm-6">
+						<input class="form-control" type="text" th:field="*{name}"
+							required="required">
+					</div>
+				</div>
+			</fieldset>
+
+			&nbsp;
+			<fieldset>
+				<div class="form-group">
+					<label class="control-label col-sm-2"><b>Password:</b></label>
+					<div class="col-sm-6">
+						<input class="form-control" type="text" th:field="*{password}"
+							required="required">
+					</div>
+				</div>
+			</fieldset>
+			&nbsp;
+			<fieldset>
+				<div class="form-group">
+					<label class="control-label col-sm-2"><b>Email:</b></label>
+					<div class="col-sm-6">
+						<input class="form-control" type="text" th:field="*{email}"
+							required="required"
+							pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+						<p th:if="${errormsg != null}" th:utext="${errormsg}"
+							style="color: red"></p>
+					</div>
+				</div>
+			</fieldset>
+			&nbsp;
+			<fieldset>
+				<div class="dropdown">
+					<label class="control-label col-sm-2"><b>Manager in
+							charge:</b></label> <select th:field="*{manager.uid}" name="Select Manager">
+						<option th:each="manager:${managertohtml}"
+							th:value="${manager.uid}" th:text="${manager.name}"></option>
+					</select>
+				</div>
+			</fieldset>
+			&nbsp;
+
+			<fieldset>
+				<div class="form-group">
+					<label class="control-label col-sm-6"><b>Annual leave
+							entitled per year:</b> </label>
+					<div class="col-sm-6">
+						<input class="form-control" type="number"
+							th:field="*{annualLeaveEntitlement}" id="altextbox">
+					</div>
+				</div>
+			</fieldset>
+			&nbsp;
+			<fieldset>
+				<div class="form-group">
+					<label class="control-label col-sm-6"><b>Medical leave
+							entitled per year: </b></label>
+					<div class="col-sm-6">
+						<input class="form-control" type="number" max="60"
+							th:field="*{medicalLeaveEntitlement}" id="mltextbox">
+					</div>
+				</div>
+			</fieldset>
+			&nbsp;
+			<fieldset>
+			<div class="form-group">
+				<label class="control-label col-sm-6"><button class="btn btn-primary" type="submit">Submit</button></label>
+				</div>
+			</fieldset>
+	</div>
+	</form>
+	</div>
+    </div>
+    
+</div>
+
+</body>
+</html>

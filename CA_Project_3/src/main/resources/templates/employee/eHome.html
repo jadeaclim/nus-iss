@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1">
+	<link href="assets/css/signin.css" th:href="@{/assets/css/sidebar.css}" rel="stylesheet">
+	<title>Employee Homepage</title>
+	
+</head>
+<body>
+<div class="wrapper">
+    <div class="sidebar">
+        <h2>Employee</h2>
+        <ul>
+            <li sec:authorize="hasAuthority('ADMIN')" ><a href="/">Admin Home</a></li>
+            <li sec:authorize="hasAuthority('MANAGER')" ><a href="/">Manager Home</a></li>
+            <li><a href="/employee">Employee Home</a></li>
+            <li><a href="/employee/apply">Submit Leave Application</a></li>
+            <li><a href="/employee/las">View Leave History</a></li>
+            <li><a href="/employee/ots">Manage Overtime</a></li>
+
+            <li><a href="/logout">Log Out</a></li>
+        </ul> 
+       
+    </div>
+    <div class="main_content">
+        <div class="header"><th:block th:include = "common :: navbar"></div>  
+        <div class="info">
+         <h2>Personal Leave Overview</h2>
+
+				<table class="table" style="width: 50%">
+					<thead class="thead-light">
+						<tr>
+							<th scope="col">Type of Leave</th>
+							<th scope="col">Entitlement (Days)</th>
+							<th scope="col">Balance (Days)</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">Annual Leave</th>
+							<td th:utext="${ALEntitled}"></td>
+							<td th:utext="${ALBalance}"></td>
+						</tr>
+
+						<tr>
+							<th scope="row">Medical Leave</th>
+							<td th:utext="${MLEntitled}"></td>
+							<td th:utext="${MLBalance}"></td>
+						</tr>
+				</table>
+				<div></div>
+				<table class="table" style="width: 50%">
+					<thead class="thead-light">
+						<tr>
+							<th scope="col">Type of Leave</th>
+							<th scope="col">Approved Overtime (Hours)</th>
+							<th scope="col">Balance (Days)</th>
+						</tr>
+					</thead>
+					<tbody>
+
+						<tr>
+							<th scope="row">Compensation Leave</th>
+							<td th:utext="${CLfromOT}"></td>
+							<td th:utext="${CLBalance}"></td>
+
+						</tr>
+					</tbody>
+				</table>
+
+				<p>Note: Every 4 hours of approved Overtime equates to
+					half-day of Compensation Leave</p>
+
+			</div>
+   </div> 
+</div>
+	
+
+</body>
+</html>

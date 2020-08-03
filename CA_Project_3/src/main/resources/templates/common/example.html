@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<!-- Bootstrap core CSS -->
+<link href="asserts/css/bootstrap.min.css"
+	th:href="@{/webjars/bootstrap/3.4.1/css/bootstrap.css}"
+	rel="stylesheet">
+<!-- jquery core js -->
+<script th:src="@{/webjars/jquery/3.5.1/jquery.js}"></script>
+<!-- Bootstrap core js -->
+<script th:src="@{/webjars/bootstrap/3.4.1/js/bootstrap.min.js}"></script>
+</head>
+<body>
+	<div th:fragment="example" th:class=${content}>this is a [[${content}]] page</div>
+</body>
+</html>

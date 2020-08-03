@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1">
+	<link href="assets/css/signin.css" th:href="@{/assets/css/sidebar.css}" rel="stylesheet">
+	<title>Admin Home Page</title>
+	
+		
+</head>
+
+
+<body>
+
+<div class="wrapper">
+    <div class="sidebar">
+        <h2>Admin</h2>
+        <ul>
+            <li><a href="/">Admin Home</a></li>
+            <li><a href="/admin/list">Manage Staff</a></li>
+            <li><a href="/employee">Manage Personal Leave</a></li>
+            <li><a href="/admin/create">Create new staff</a></li>
+            <li><a href="/admin/massEditLeave">Manage Medical/Annual Leave</a></li>
+            <li><a href="/admin/ph">Manage Public Holiday</a></li>
+            <li><a href="/logout">Log Out</a></li>
+        </ul> 
+       
+    </div>
+    <div class="main_content">
+        <div class="header"><th:block th:include = "common :: navbar"></div>  
+        <div class="info">
+        <table>
+        	<tr>
+        	<td>&nbsp;</td>
+        	<td>
+        			<img align="right" alt="Welcome Admin" src="/assets/img/WelcomeAdmin.png" width="200" height="200">
+        		</td>
+        		<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+        		<td>
+        			<div><h2>Welcome,</h2><h2 th:utext="${name}"></h2></div>
+          			<p>Please access your administrative functionalities on the left navigation bar.</p>
+          		</td>
+        		
+        	</tr>
+        </table>
+          
+      </div>
+    </div>
+    
+</div>
+</body>
+</html>
