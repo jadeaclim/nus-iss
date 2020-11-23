@@ -17,9 +17,7 @@ import com.team1.iss.trial.repo.LARepository;
 import com.team1.iss.trial.repo.PublicHolidayRepository;
 import com.team1.iss.trial.services.interfaces.ILaService;
 
-/*
- * Author: YC
- * */
+
 @Service
 public class LaServiceImpl implements ILaService {
 
