@@ -16,9 +16,6 @@ import com.team1.iss.trial.domain.LA;
 
 
 
-/*
- * Author: YC
- * */
 public interface LARepository extends JpaRepository<LA, Integer>, JpaSpecificationExecutor<LA> {
 
     @Query("FROM LA WHERE uid = ?1")
