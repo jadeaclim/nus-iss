@@ -244,7 +244,7 @@ public class EmployeeController {
 				isLAValidate=false;
 			}
 		}
-		// check if la is overlaped with existing leave
+		// check if la overlaps with existing leave
 		List<LA> existing_LA = laService.findLAOverlap(la.getFromTime(), la.getToTime(), la.getOwner().getUid(), TimeUtil.getYearStartTime(TimeUtil.getCurrentTimestamp()))
 				.stream()
 				.filter(x->la.getUid()!=x.getUid())
